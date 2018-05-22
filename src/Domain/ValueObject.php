@@ -17,7 +17,8 @@ abstract class ValueObject
 {
     abstract protected function value(): array;
 
-    final public function equals(self $valueObject): bool {
+    final public function equals(self $valueObject): bool
+    {
         return $this->value() === $valueObject->value();
     }
 }
