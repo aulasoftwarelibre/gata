@@ -16,7 +16,7 @@ namespace App\Domain\Comment\Model;
 use App\Domain\Comment\Exception\EmptyCommentTextException;
 use App\Domain\ValueObject;
 
-final class CommentText implements ValueObject
+final class CommentText extends ValueObject
 {
     /**
      * @var string
@@ -42,8 +42,10 @@ final class CommentText implements ValueObject
         return $this->text;
     }
 
-    public function equals(ValueObject $valueObject): bool
+    protected function value(): array
     {
-        return $valueObject instanceof self && $this->text() === $valueObject->text();
+        return [
+            'text' => $this->text(),
+        ];
     }
 }

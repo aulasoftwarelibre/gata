@@ -16,7 +16,7 @@ namespace App\Domain\Group\Model;
 use App\Domain\Group\Exception\EmptyGroupNameException;
 use App\Domain\ValueObject;
 
-final class GroupName implements ValueObject
+final class GroupName extends ValueObject
 {
     /**
      * @var string
@@ -42,8 +42,10 @@ final class GroupName implements ValueObject
         return $this->name;
     }
 
-    public function equals(ValueObject $valueObject): bool
+    protected function value(): array
     {
-        return $valueObject instanceof self && $valueObject->name() === $this->name();
+        return [
+            'name' => $this->name(),
+        ];
     }
 }

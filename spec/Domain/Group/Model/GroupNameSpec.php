@@ -31,7 +31,7 @@ final class GroupNameSpec extends ObjectBehavior
 
     public function it_is_a_value_object()
     {
-        $this->shouldImplement(ValueObject::class);
+        $this->shouldHaveType(ValueObject::class);
     }
 
     public function it_can_not_be_blank()

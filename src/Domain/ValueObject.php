@@ -13,7 +13,11 @@ declare(strict_types=1);
 
 namespace App\Domain;
 
-interface ValueObject
+abstract class ValueObject
 {
-    public function equals(ValueObject $object): bool;
+    abstract protected function value(): array;
+
+    final public function equals(self $valueObject): bool {
+        return $this->value() === $valueObject->value();
+    }
 }

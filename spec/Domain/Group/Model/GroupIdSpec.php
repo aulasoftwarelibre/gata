@@ -31,7 +31,7 @@ final class GroupIdSpec extends ObjectBehavior
 
     public function it_is_a_value_object(): void
     {
-        $this->shouldImplement(ValueObject::class);
+        $this->shouldHaveType(ValueObject::class);
     }
 
     public function it_has_to_be_valid(): void
