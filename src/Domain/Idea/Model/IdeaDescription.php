@@ -15,7 +15,7 @@ namespace App\Domain\Idea\Model;
 
 use App\Domain\ValueObject;
 
-final class IdeaDescription implements ValueObject
+final class IdeaDescription extends ValueObject
 {
     /**
      * @var string
@@ -37,8 +37,10 @@ final class IdeaDescription implements ValueObject
         return $this->description;
     }
 
-    public function equals(ValueObject $valueObject): bool
+    protected function value(): array
     {
-        return $valueObject instanceof self && $this->description() === $valueObject->description();
+        return [
+            'description' => $this->description(),
+        ];
     }
 }

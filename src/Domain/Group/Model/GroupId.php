@@ -17,7 +17,7 @@ use App\Domain\Group\Exception\InvalidGroupIdFormatException;
 use App\Domain\ValueObject;
 use Ramsey\Uuid\Uuid;
 
-final class GroupId implements ValueObject
+final class GroupId extends ValueObject
 {
     /**
      * @var string
@@ -43,8 +43,10 @@ final class GroupId implements ValueObject
         return $this->id;
     }
 
-    public function equals(ValueObject $valueObject): bool
+    protected function value(): array
     {
-        return $valueObject instanceof self && $this->id() === $valueObject->id();
+        return [
+            'id' => $this->id(),
+        ];
     }
 }

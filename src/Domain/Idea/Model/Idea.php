@@ -88,7 +88,7 @@ final class Idea extends AggregateRoot
     {
         $this->ideaId = $event->ideaId();
         $this->groupId = $event->groupId();
-        $this->ideaStatus = IdeaStatus::PENDING();
+        $this->ideaStatus = $event->ideaStatus();
         $this->ideaTitle = $event->ideaTitle();
         $this->ideaDescription = $event->ideaDescription();
     }

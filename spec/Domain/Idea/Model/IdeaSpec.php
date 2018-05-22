@@ -65,9 +65,9 @@ final class IdeaSpec extends ObjectBehavior
         $this->ideaId()->shouldBeLike(new IdeaId(self::IDEA_ID));
     }
 
-    public function it_is_pending_by_default(): void
+    public function it_has_pending_idea_status_by_default(): void
     {
-        $this->ideaStatus()->shouldBeLike(IdeaStatus::PENDING());
+        $this->ideaStatus()->shouldBeLike(new IdeaStatus(IdeaStatus::PENDING));
     }
 
     public function it_has_a_group_id(): void

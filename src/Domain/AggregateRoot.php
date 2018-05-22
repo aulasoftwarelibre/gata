@@ -19,12 +19,12 @@ use Prooph\EventSourcing\AggregateRoot as BaseAggregateRoot;
 
 abstract class AggregateRoot extends BaseAggregateRoot
 {
-    protected function apply(AggregateChanged $event): void
+    final protected function apply(AggregateChanged $event): void
     {
         $this->applyMessage($event);
     }
 
-    protected function applyMessage(Message $event): void
+    final protected function applyMessage(Message $event): void
     {
         $eventClass = get_class($event);
         $applyMethodName = mb_strtolower('apply'.mb_substr($eventClass, mb_strrpos($eventClass, '\\') + 1));

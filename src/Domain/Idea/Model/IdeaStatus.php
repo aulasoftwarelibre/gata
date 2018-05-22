@@ -13,16 +13,47 @@ declare(strict_types=1);
 
 namespace App\Domain\Idea\Model;
 
-use App\Domain\Enum;
+use App\Domain\Idea\Exception\InvalidIdeaStatusException;
+use App\Domain\ValueObject;
 
-/**
- * @method static IdeaStatus ACCEPTED()
- * @method static IdeaStatus PENDING()
- * @method static IdeaStatus REJECTED()
- */
-final class IdeaStatus extends Enum
+final class IdeaStatus extends ValueObject
 {
     const ACCEPTED = 'accepted';
     const PENDING = 'pending';
     const REJECTED = 'rejected';
+
+    /**
+     * @var string
+     */
+    private $status;
+
+    public function __construct(string $status)
+    {
+        if (!in_array($status, [
+            self::ACCEPTED,
+            self::PENDING,
+            self::REJECTED,
+        ], true)) {
+            throw new InvalidIdeaStatusException();
+        }
+
+        $this->status = $status;
+    }
+
+    public function __toString(): string
+    {
+        return $this->status();
+    }
+
+    public function status(): string
+    {
+        return $this->status;
+    }
+
+    protected function value(): array
+    {
+        return [
+            'status' => $this->status(),
+        ];
+    }
 }
